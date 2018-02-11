@@ -1,0 +1,42 @@
+
+library(shiny)
+library(shinythemes)
+library(markdown)
+library(stringr)
+library(tm)
+
+shinyUI(
+    
+    
+    fluidPage(
+        titlePanel("Data Science Caption - Next Word Prediction Project"),    
+        sidebarLayout(
+            sidebarPanel(
+                style = "font-family: 'Segoe UI';
+                background: #A9CCE3;color=#000000;",
+                h5("This application will predict the next word given the entered word or phrases.", value=""),
+                hr(),
+                textInput("text", "Enter a word or phrase here:",value = ""),
+                hr(),
+                h5("1. The predicted word will be displayed after entering word/phrases.", 
+                   hr(),
+                   "2. Only English words are accepted in this application.",
+                   hr(),
+                   "3. 'NA' will be returned if the entered word is invalid or no further predicted word is detected." )
+                #hr()
+            ),
+            mainPanel(
+                style = "font-family: 'Segoe UI';
+                background: #EAECEE;",
+                h4("Predicted Next Word:"),
+                strong(code(textOutput("predword"))),
+                #verbatimTextOutput("predword"),
+                #strong("Current word/phrase entered:"),
+                h4("Current word/phrase entered:"),
+                strong(code(textOutput('giventext'))),
+                br()
+                
+            )         
+        )
+    )
+)
